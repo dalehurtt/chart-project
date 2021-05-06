@@ -31,7 +31,7 @@ namespace Charts {
 
         private static readonly decimal percentageChange = 0.015M;
 
-        public DailyPointList (DailyStockList values) {
+        public DailyPointList (List<DailyStockData> values) {
             List<decimal> scale = null;
             List<int> highs = new List<int> ();
             List<int> lows = new List<int> ();
@@ -264,7 +264,7 @@ namespace Charts {
             }
         }
 
-        private List<decimal> GetHighLowAndIncrement (DailyStockList values) {
+        private List<decimal> GetHighLowAndIncrement (List<DailyStockData> values) {
             List<decimal> scale = null;
             try {
                 decimal high = 0, low = 0;

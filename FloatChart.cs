@@ -25,7 +25,7 @@ namespace Charts {
 
     public class DailyFloatList : List<DailyFloatData> {
 
-        public DailyFloatList (DailyStockList values, long flt) {
+        public DailyFloatList (List<DailyStockData> values, long flt) {
             try {
                 var cnt = values.Count;
                 for (var i = 0; i < cnt; i++) {
@@ -37,7 +37,7 @@ namespace Charts {
             }
         }
 
-        private DailyFloatData CalculateFloat (DailyStockList values, long flt, int idx) {
+        private DailyFloatData CalculateFloat (List<DailyStockData> values, long flt, int idx) {
             DailyFloatData fv = null;
             try {
                 var cnt = values.Count;
@@ -86,7 +86,7 @@ namespace Charts {
 
         public void OutputAsCsv (string filePath) {
             try {
-                using StreamWriter file = new StreamWriter (filePath);
+                using StreamWriter file = new (filePath);
                 file.WriteLine (DailyFloatData.Header);
                 foreach (DailyFloatData value in this) {
                     file.WriteLine (value.ToCsv ());
