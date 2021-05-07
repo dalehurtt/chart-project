@@ -301,7 +301,7 @@ namespace Charts {
                 }
             }
             catch (Exception ex) {
-                Utils.WriteToConsole (Utils.ExToString (ex), true, "OutputPointValuesAsCsv");
+                Utils.WriteToConsole (Utils.ExToString (ex), true, "OutputAsCsv");
             }
         }
     }

@@ -10,8 +10,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DailyStockData.cs" />
-	<Compile Include="$(MSBuildThisFileDirectory)FloatChart.cs" />
-	<Compile Include="$(MSBuildThisFileDirectory)PointChart.cs" />
-	<Compile Include="$(MSBuildThisFileDirectory)Result.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FloatChart.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PointChart.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Result.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VolumeChart.cs" />
   </ItemGroup>
 </Project>
