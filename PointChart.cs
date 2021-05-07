@@ -18,7 +18,7 @@ namespace Charts {
         public decimal Target { get; set; }
         public int TargetIndex { get; set; }
 
-        public static string Header = $"Date,Close,Point,Signal,High/Low,Target";
+        public static readonly string Header = $"Date,Close,Point,Signal,High/Low,Target";
 
         public string ToCsv () {
             return $"{Date:yyyy-MM-dd},{Close:F2},{Point:F2},{Signal},{HighLow:F2},{Target:F2}";
@@ -32,16 +32,16 @@ namespace Charts {
         private static readonly decimal percentageChange = 0.015M;
 
         public DailyPointList (List<DailyStockData> values) {
-            List<decimal> scale = null;
-            List<int> highs = new List<int> ();
-            List<int> lows = new List<int> ();
+            List<decimal> scale;
+            List<int> highs = new ();
+            List<int> lows = new ();
 
             try {
                 scale = GetHighLowAndIncrement (values);
 
                 var cnt = values.Count;
 
-                DailyPointData lastPoints = new DailyPointData {
+                DailyPointData lastPoints = new () {
                     Close = 0,
                     HighLow = 0,
                     HighLowIndex = -1,
@@ -74,7 +74,7 @@ namespace Charts {
             }
         }
 
-        private DailyPointData CalculatePoint (DailyStockData value, List<decimal> scale, DailyPointData lastPoints, List<int> highs, List<int> lows) {
+        private static DailyPointData CalculatePoint (DailyStockData value, List<decimal> scale, DailyPointData lastPoints, List<int> highs, List<int> lows) {
             DailyPointData newPoints = null;
             decimal newPoint;
             int newIndex;
@@ -227,7 +227,7 @@ namespace Charts {
             return newPoints;
         }
 
-        private (decimal, int) FindPointValue (List<decimal> scale, decimal close, PointSignal lastSignal) {
+        private static (decimal, int) FindPointValue (List<decimal> scale, decimal close, PointSignal lastSignal) {
             try {
                 int cnt = scale.Count;
                 decimal lastPoint = 0;
@@ -264,7 +264,7 @@ namespace Charts {
             }
         }
 
-        private List<decimal> GetHighLowAndIncrement (List<DailyStockData> values) {
+        private static List<decimal> GetHighLowAndIncrement (List<DailyStockData> values) {
             List<decimal> scale = null;
             try {
                 decimal high = 0, low = 0;
@@ -294,7 +294,7 @@ namespace Charts {
 
         public void OutputAsCsv (string filePath) {
             try {
-                using StreamWriter file = new StreamWriter (filePath);
+                using StreamWriter file = new (filePath);
                 file.WriteLine (DailyPointData.Header);
                 foreach (DailyPointData value in this) {
                     file.WriteLine (value.ToCsv ());

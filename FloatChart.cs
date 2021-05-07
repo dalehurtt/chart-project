@@ -14,7 +14,7 @@ namespace Charts {
         public FloatSignal Signal { get; set; }
         public DateTime StartDate { get; set; }
 
-        public static string Header = $"End Date,Start Date,Buy,Sell,Signal";
+        public static readonly string Header = $"End Date,Start Date,Buy,Sell,Signal";
 
         public string ToCsv () {
             return $"{EndDate:yyyy-MM-dd},{StartDate:yyyy-MM-dd},{High:F2},{Low:F2},{Signal}";
@@ -37,7 +37,7 @@ namespace Charts {
             }
         }
 
-        private DailyFloatData CalculateFloat (List<DailyStockData> values, long flt, int idx) {
+        private static DailyFloatData CalculateFloat (List<DailyStockData> values, long flt, int idx) {
             DailyFloatData fv = null;
             try {
                 var cnt = values.Count;

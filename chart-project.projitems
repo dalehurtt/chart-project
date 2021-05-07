@@ -9,6 +9,7 @@
     <Import_RootNamespace>Charts</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AverageChart.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DailyStockData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FloatChart.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PointChart.cs" />

@@ -40,7 +40,7 @@ namespace Charts {
         public long AverageVolume { get; set; }
         public decimal Strength { get; set; }
 
-        public static string Header = $"Date,Volume,Average Volume,Strength";
+        public static readonly string Header = $"Date,Volume,Average Volume,Strength";
 
         public string ToCsv () {
             return $"{Date:yyyy-MM-dd},{Volume},{AverageVolume},{Strength}";
@@ -84,7 +84,7 @@ namespace Charts {
 
         public void OutputAsCsv (string filePath) {
             try {
-                using StreamWriter file = new StreamWriter (filePath);
+                using StreamWriter file = new (filePath);
                 file.WriteLine (AverageVolumeData.Header);
                 foreach (AverageVolumeData value in this) {
                     file.WriteLine (value.ToCsv ());
