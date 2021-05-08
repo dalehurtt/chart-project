@@ -30,6 +30,7 @@ namespace Charts {
     public class DailyPointList : List<DailyPointData> {
 
         private static readonly decimal percentageChange = 0.015M;
+        public List<decimal> Scale { get; set; }
 
         public DailyPointList (List<DailyStockData> values) {
             List<decimal> scale;
@@ -38,6 +39,7 @@ namespace Charts {
 
             try {
                 scale = GetHighLowAndIncrement (values);
+                Scale = scale;
 
                 var cnt = values.Count;
 
