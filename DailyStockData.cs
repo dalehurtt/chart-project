@@ -58,6 +58,12 @@ namespace Charts {
 
     public class DailyStockList : List<DailyStockData> {
 
+        private string Ticker;
+
+        public DailyStockList (string ticker) {
+            Ticker = ticker;
+        }
+
         private static Result<HtmlDocument, (string, string)> DownloadData (string ticker) {
             try {
                 var url = $"https://finance.yahoo.com/quote/{ticker}/history?p={ticker}";
@@ -73,7 +79,7 @@ namespace Charts {
 
         public static Result<DailyStockList, (string, string)> GetData (string ticker) {
             try {
-                DailyStockList list = new DailyStockList ();
+                DailyStockList list = new DailyStockList (ticker);
 
                 var downloadResult = DownloadData (ticker);
                 if (downloadResult.IsSuccess) {

@@ -31,11 +31,13 @@ namespace Charts {
 
         private static readonly decimal percentageChange = 0.015M;
         public List<decimal> Scale { get; set; }
+        private string Ticker;
 
-        public DailyPointList (List<DailyStockData> values) {
+        public DailyPointList (List<DailyStockData> values, string ticker) {
             List<decimal> scale;
             List<int> highs = new ();
             List<int> lows = new ();
+            Ticker = ticker;
 
             try {
                 scale = GetHighLowAndIncrement (values);
@@ -76,7 +78,7 @@ namespace Charts {
             }
         }
 
-        private static DailyPointData CalculatePoint (DailyStockData value, List<decimal> scale, DailyPointData lastPoints, List<int> highs, List<int> lows) {
+        private DailyPointData CalculatePoint (DailyStockData value, List<decimal> scale, DailyPointData lastPoints, List<int> highs, List<int> lows) {
             DailyPointData newPoints = null;
             decimal newPoint;
             int newIndex;
@@ -224,12 +226,12 @@ namespace Charts {
                 }
             }
             catch (Exception ex) {
-                Utils.WriteToConsole ($"{Utils.ExToString (ex)} {Program.currentTicker}", true, "CalculatePoint");
+                Utils.WriteToConsole ($"{Utils.ExToString (ex)} {Ticker}", true, "CalculatePoint");
             }
             return newPoints;
         }
 
-        private static (decimal, int) FindPointValue (List<decimal> scale, decimal close, PointSignal lastSignal) {
+        private (decimal, int) FindPointValue (List<decimal> scale, decimal close, PointSignal lastSignal) {
             try {
                 int cnt = scale.Count;
                 decimal lastPoint = 0;
@@ -266,7 +268,7 @@ namespace Charts {
             }
         }
 
-        private static List<decimal> GetHighLowAndIncrement (List<DailyStockData> values) {
+        private List<decimal> GetHighLowAndIncrement (List<DailyStockData> values) {
             List<decimal> scale = null;
             try {
                 decimal high = 0, low = 0;

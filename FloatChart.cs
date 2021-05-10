@@ -25,7 +25,10 @@ namespace Charts {
 
     public class DailyFloatList : List<DailyFloatData> {
 
-        public DailyFloatList (List<DailyStockData> values, long flt) {
+        private string Ticker;
+
+        public DailyFloatList (List<DailyStockData> values, long flt, string ticker) {
+            Ticker = ticker;
             try {
                 var cnt = values.Count;
                 for (var i = 0; i < cnt; i++) {
@@ -33,11 +36,11 @@ namespace Charts {
                 }
             }
             catch (Exception ex) {
-                Utils.WriteToConsole ($"{Utils.ExToString (ex)} {Program.currentTicker}", true, "DailyFloatList");
+                Utils.WriteToConsole ($"{Utils.ExToString (ex)} {Ticker}", true, "DailyFloatList");
             }
         }
 
-        private static DailyFloatData CalculateFloat (List<DailyStockData> values, long flt, int idx) {
+        private DailyFloatData CalculateFloat (List<DailyStockData> values, long flt, int idx) {
             DailyFloatData fv = null;
             try {
                 var cnt = values.Count;
@@ -79,7 +82,7 @@ namespace Charts {
                 }
             }
             catch (Exception ex) {
-                Utils.WriteToConsole ($"{Utils.ExToString (ex)} {Program.currentTicker}", true, "CalculateFloat");
+                Utils.WriteToConsole ($"{Utils.ExToString (ex)} {Ticker}", true, "CalculateFloat");
             }
             return fv;
         }
@@ -93,7 +96,7 @@ namespace Charts {
                 }
             }
             catch (Exception ex) {
-                Utils.WriteToConsole ($"{Utils.ExToString (ex)} {Program.currentTicker}", true, "OutputAsCsv");
+                Utils.WriteToConsole ($"{Utils.ExToString (ex)} {Ticker}", true, "OutputAsCsv");
             }
         }
     }

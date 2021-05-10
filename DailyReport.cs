@@ -87,7 +87,7 @@ namespace Charts {
                 }
             }
             catch (Exception ex) {
-                Utils.WriteToConsole ($"{Utils.ExToString (ex)} {Program.currentTicker}", true, "OutputReportAsCsv");
+                Utils.WriteToConsole ($"{Utils.ExToString (ex)}", true, "OutputReportAsCsv");
             }
         }
     }
